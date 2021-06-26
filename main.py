@@ -5,22 +5,20 @@ grid = np.random.randint(low=0, high=2, size=(20, 20))
 
 print(grid)
 
-def countAlive(i, j, grid):
+def safe_get(grid, i, j):
     try:
-        adjs = [grid[i-1][j],
-            grid[i+1][j],
-            grid[i][j-1],
-            grid[i][j+1]]
+        return grid[i][j]
     except IndexError:
-        adjs = [0,
-                0,
-                0,
-                0]
+        return 0
 
-    # computationally less efficent than range(4)
+def countAlive(i, j, grid):
     count = 0
-    # need to catch error lol
-    for i in range(len(adjs)):
+    adjs = [safe_get(grid, i-1, j),
+            safe_get(grid, i+1, j),
+            safe_get(grid, i, j-1),
+            safe_get(grid, i, j+1)]
+
+    for i in range(4):
         if(adjs[i] == 1):
             count += 1
     return count
