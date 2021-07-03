@@ -5,6 +5,7 @@ grid = np.random.randint(low=0, high=2, size=(20, 20))
 
 print(grid)
 
+# this is so scuffed
 def safe_get(grid, i, j):
     try:
         return grid[i][j]
